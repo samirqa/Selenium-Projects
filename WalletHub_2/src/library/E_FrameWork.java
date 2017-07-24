@@ -19,9 +19,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -211,7 +213,7 @@ public class E_FrameWork
 			    		{
 			    			case 1:
 			    				//Firefox
-			    				System.setProperty("webdriver.gecko.driver", "D:\\Projects\\WalletHub_2\\Jars\\Browser Drivers\\geckodriver.exe");
+			    				System.setProperty("webdriver.gecko.driver", "D:\\Projects\\Selenium-Projects\\WalletHub_2\\Jars\\Browser Drivers\\geckodriver.exe");
 			    				
 			    			break;
 			    			case 2:
@@ -786,6 +788,33 @@ public class E_FrameWork
  		// String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN);
 		//	driver.findElement(By.linkText("urlLink")).sendKeys(selectLinkOpeninNewTab);
 			driver.navigate().to(URL);
+ 	}
+ 	public void E_MouseHover(String WebObjectName,String SubElementName)throws Exception
+ 	{
+		try {
+			By AtrributeObj = E_GetObject(Eexcel_HashCheck(WebObjectName));
+			Actions action = new Actions(driver);
+			WebElement MouseHover = driver.findElement(AtrributeObj);
+			action.moveToElement(MouseHover).build()
+					.perform();
+
+			((JavascriptExecutor) driver).executeScript(
+					"arguments[0].style.border='3px solid red'",
+					MouseHover);
+			//Thread.sleep(2000);
+			WebElement subele = driver
+					.findElement(By
+							.xpath(".//*[@id='wh-body-inner']/div[2]/div[3]/div[1]/div/a[5]"));
+			subele.click();
+			((JavascriptExecutor) driver).executeScript(
+					"arguments[0].style.border='3px solid red'", subele);
+			//Thread.sleep(2000);
+		} catch (org.openqa.selenium.NoSuchElementException NSEE) {
+			System.out.println("\nIs Element Enabled ["
+					+ Eexcel_HashCheck(WebObjectName) + " = False].");
+			EReport_UpdateHTMLReport(Eexcel_HashCheck(WebObjectName),
+					"Check Element Enabled = false", "Done");
+		}
  	}
  	public void Close_Browser() throws Exception
  	{

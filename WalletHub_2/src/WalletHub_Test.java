@@ -1,3 +1,5 @@
+package testscripts;
+
 import java.io.File;
 import library.E_FrameWork;
 
@@ -62,7 +64,8 @@ import library.E_FrameWork;
 		driv.openNewURL("http://wallethub.com/profile/test_insurance_company/");
 		driv.E_WaitForPageLoad();
 		driv.E_WaitUntilElementDisplay("Rating.XPATH");
-		driv.E_Click("Rating.XPATH");
+		driv.E_MouseHover("Rating.XPATH","Five_Start.XPAT");
+		
 		System.out.println("\n\n= = = = 'LOGIN' TEST SCENARIO ENDED = = = =");
 	}
 
