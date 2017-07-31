@@ -1,5 +1,5 @@
 @ECHO OFF
-set CLASSPATH=%CLASSPATH%;
+::set CLASSPATH=%CLASSPATH%;
 java WalletHub_Test
 echo Runing..!
 pause
